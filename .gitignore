@@ -44,12 +44,11 @@ buildNumber.properties
 
 ### NetBeans ###
 Descent/nbproject/private/
-nbproject/private/
-build/
-nbbuild/
-dist/
-nbdist/
-.nb-gradle/
+Descent/build/
+Descent/nbbuild/
+Descent/dist/
+Descent/nbdist/
+Descent/.nb-gradle/
 
 ### Windows ###
 # Windows thumbnail cache files
