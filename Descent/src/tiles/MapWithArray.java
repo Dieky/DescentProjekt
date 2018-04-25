@@ -12,60 +12,23 @@ import util.Tuple;
  * @author Jens
  */
 public class MapWithArray {
-    private int gridSize = 4;
-    public Tile[][] tiles = new Tile[gridSize][gridSize];
-    public Edge[][][] tileEdges = new Edge[gridSize][gridSize][2];
-    public Tile[][][] tileNeighbors = new Tile [gridSize][gridSize][4];
-    
-    public MapWithArray(){
-        for(int i = 0; i < tiles.length; i++){
-            for(int j = 0; j < tiles[i].length; j++){
-                tiles[i][j] = new Tile(i, j, 20, 20, getRandomType());
-                tileEdges[i][j][0] = new Edge(false);
-                tileEdges[i][j][1] = new Edge(false);
-            }
-        }
-        for(int i = 0; i < gridSize; i++){
-            tileEdges[0][i][1].setWall(true);
-            tileEdges[1][i][1].setWall(true);
-            tileEdges[2][i][1].setWall(true);
-            tileEdges[3][i][1].setWall(true);
-        }
+    private int gridSize;
+    public Tile[][] tiles;
+    public Edge[][][] tileEdges;
+    public Tile[][][] tileNeighbors;
+
+    public MapWithArray(Tile[][] tiles){
+        gridSize = tiles[0].length;
+        this.tiles = tiles;
     }
 
-    private TileType getRandomType(){
-        int ran = (int) Math.ceil(Math.random()*100);
-        if(ran < 20){
-            return TileType.EMPTY;
-        }else if (ran < 40){
-            return TileType.GROUND;
-        }else if (ran < 60){
-            return TileType.WATER;
-        }else if (ran < 80){
-            return TileType.FIRE;
-        }else{
-            return TileType.POISON;
-        }
-    }
-    
-    private void setNeighbors(){
-        for(int i = 1; i < gridSize-1; i++){
-            for(int j = 0; j < gridSize-1; j++){
-                    tileNeighbors[i][j][0] = tiles[i-1][j];
-                    tileNeighbors[i][j][1] = tiles[i][j+1];
-                    tileNeighbors[i][j][2] = tiles[i+1][j];
-                    tileNeighbors[i][j][3] = tiles[i][j-1];
-                }
-
-            }
-        }
     public Tile getTile(Tuple position){
         int x = (int) Math.floor(position.getX());
         int y = (int) Math.floor(position.getY());
         return this.tiles[x][y];
     }
     @Override
-    public String toString(){
+    public String toString(){ //ikke brugbar siden alle tiles fik 4 edges. skal FIXES
         StringBuilder mapString = new StringBuilder();
         StringBuilder tileString = new StringBuilder();
         StringBuilder verticalEdgeString = new StringBuilder();
@@ -90,5 +53,13 @@ public class MapWithArray {
 
         }
         return mapString.toString();
+    }
+    public void stringRep(){ //printer samtlige tiles uden nogle edges
+        for(Tile[] ta : tiles){
+            for(Tile t : ta){
+                System.out.print(t + " ");
+            }
+            System.out.println();
+        }
     }
 }
