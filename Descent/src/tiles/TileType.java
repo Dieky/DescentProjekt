@@ -10,10 +10,15 @@ package tiles;
  * @author Jens
  */
 public enum TileType {
-    EMPTY, 
-    GROUND, 
-    WATER, 
-    FIRE, 
-    POISON, 
-    PIT
+    EMPTY('E'),
+    GROUND('G'),
+    WATER('W'),
+    FIRE('F'),
+    POISON('p'),
+    PIT('P')
+    ;
+    private final char representativeChar;
+    TileType(char c){
+        representativeChar = c;
+    }
 }

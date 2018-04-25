@@ -11,6 +11,10 @@ package tiles;
  */
 public class Edge {
     private boolean wall;
+    
+    public Edge(){
+        wall = false;
+    }
     public Edge(boolean b){
         wall = b;
     }

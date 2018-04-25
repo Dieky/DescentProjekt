@@ -4,31 +4,40 @@
  * and open the template in the editor.
  */
 package tiles;
-
 import util.*;
-import java.awt.Graphics2D;
 /**
  *
  * @author Jens
  */
 public class Tile {
-    private int x,y,width,height;
+    public Edge[] edges; //0:nord, 1:øst, 2:syd, 3: vest
+    public Tile[] neighbors; //0:nord, 1:øst, 2:syd, 3: vest
+    private final Tuple position;
+    private int width,height;
     private TileType type;
     
     public Tile(int x, int y, int width, int height, TileType type){
-        this.x = x;
-        this.y = y;
+        this.position = new Tuple(x,y);
         this.width = width;
         this.height = height;
         this.type = type;
+        this.edges = new Edge[4];
+        this.neighbors = new Tile[4];
+        for(int i = 0; i < edges.length; i++){
+            edges[i] = new Edge();
+        }
+    }
+    
+    public Tuple getPosition(){
+        return position;
     }
     
     public int getX() {
-        return x;
+        return position.getX();
     }
 
     public int getY() {
-        return y;
+        return position.getY();
     }
 
     public int getWidth() {
@@ -43,6 +52,9 @@ public class Tile {
         return type;
     }
     
+    public Tile returnNeighbor(Direction direction){
+        return neighbors[direction.toInt()];
+    }
     @Override
     public String toString(){
         switch(this.type){
