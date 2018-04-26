@@ -91,6 +91,7 @@ public class MapGenerator {
     
     private Edge[] charToEdge(char c){ //skal udviddes til at understøtte samtlige edge konfigurationer.
         switch(c){
+            case ('1'):
             case ('e'):
                 return new Edge[]{
                     new Edge(),
